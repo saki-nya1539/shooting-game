@@ -51,6 +51,24 @@ deploy.bat
 
 実行すると、コミットメッセージを入力して、そのまま `git add / commit / push` まで進めます。
 
+### 4. すぐ見られるコマンド一覧
+
+```bash
+# 変更をコミットして公開
+git add .
+git commit -m "Update"
+git push origin main
+
+# Windows ならこれだけでOK
+deploy.bat
+```
+
+### 5. CI/CD の流れ
+
+```text
+push / pull request → GitHub Actions 起動 → 必須ファイル確認 → HTML 参照確認 → 結果表示
+```
+
 ## ファイル構成
 
 - [index.html](index.html) - ゲーム画面
