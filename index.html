@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Starfall Defender</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="hud" aria-label="ゲーム情報">
+        <div class="hud-item">
+          <span class="label">スコア</span>
+          <span id="score">0</span>
+        </div>
+        <div class="hud-item">
+          <span class="label">シールド</span>
+          <span id="health">100%</span>
+        </div>
+        <div class="hud-item">
+          <span class="label">ステージ</span>
+          <span id="stage">1</span>
+        </div>
+        <div class="hud-item power-item">
+          <span class="label">パワー</span>
+          <span id="power">1x</span>
+          <div class="power-bar" aria-label="パワー進行度">
+            <div id="powerFill" class="power-fill"></div>
+          </div>
+          <small id="powerProgress">0/3</small>
+        </div>
+        <div class="hud-item">
+          <span class="label">状態</span>
+          <span id="status">通常</span>
+        </div>
+      </header>
+
+      <section class="canvas-wrap">
+        <canvas id="gameCanvas" width="900" height="600"></canvas>
+        <div id="overlay" class="overlay" role="dialog" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>

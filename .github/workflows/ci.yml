@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate files
+        run: |
+          python - <<'PY'
+          import os
+          required = ['index.html', 'style.css', 'game.js', 'README.md']
+          missing = [name for name in required if not os.path.exists(name)]
+          if missing:
+              raise SystemExit(f'Missing files: {missing}')
+          print('Required files exist.')
+          PY
+      - name: Basic HTML sanity check
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          text = Path('index.html').read_text(encoding='utf-8')
+          assert '<canvas' in text
+          assert 'game.js' in text
+          assert 'style.css' in text
+          print('HTML references look correct.')
+          PY
